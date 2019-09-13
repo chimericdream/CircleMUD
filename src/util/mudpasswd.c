@@ -55,11 +55,11 @@ void pword(char *filename, char *name, char *password)
       found = TRUE;
       strncpy(buf.pwd, CRYPT(password, buf.name), MAX_PWD_LENGTH);
       if (fseek(fl, -1L * sizeof(buf), SEEK_CUR) != 0)
-	perror("fseek");
+ perror("fseek");
       if (fwrite(&buf, sizeof(buf), 1, fl) != 1)
-	perror("fwrite");
+ perror("fwrite");
       if (fseek(fl, 0L, SEEK_CUR) != 0)
-	perror("fseek");
+ perror("fseek");
     }
   }
 

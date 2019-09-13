@@ -39,7 +39,7 @@ void do_purge(int argc, char **argv)
     *(strchr(name, '.')) = '\0';
     for (tmp = name_list; !found && tmp; tmp = tmp->next)
       if (!strcmp(tmp->name, name))
-	found = 1;
+ found = 1;
     if (!found) {
       remove(argv[x]);
       printf("Deleting %s\n", argv[x]);
@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 
   if (argc < 3) {
     printf("Usage: %s <playerfile-name> <file1> <file2> ... <filen>\n",
-	   argv[0]);
+    argv[0]);
     exit(1);
   }
   if (!(fl = fopen(argv[1], "rb"))) {

@@ -35,7 +35,7 @@ typedef sh_int room_num;
 
 struct THREE_char_ability_data {
   sbyte str;
-  sbyte str_add;		/* 000 - 100 if strength 18             */
+  sbyte str_add;  /* 000 - 100 if strength 18             */
   sbyte intel;
   sbyte wis;
   sbyte dex;
@@ -45,38 +45,38 @@ struct THREE_char_ability_data {
 
 struct THREE_char_point_data {
   sh_int mana;
-  sh_int max_mana;		/* Max mana for PC/NPC                     */
+  sh_int max_mana;  /* Max mana for PC/NPC                     */
   sh_int hit;
-  sh_int max_hit;		/* Max hit for PC/NPC                      */
+  sh_int max_hit;  /* Max hit for PC/NPC                      */
   sh_int move;
-  sh_int max_move;		/* Max move for PC/NPC                     */
-  sh_int armor;			/* Internal -100..100, external -10..10 AC */
-  int gold;			/* Money carried                           */
-  int bank_gold;		/* Gold the char has in a bank account     */
-  int exp;			/* The experience of the player            */
-  sbyte hitroll;		/* Any bonus or penalty to the hit roll    */
-  sbyte damroll;		/* Any bonus or penalty to the damage roll */
+  sh_int max_move;  /* Max move for PC/NPC                     */
+  sh_int armor;   /* Internal -100..100, external -10..10 AC */
+  int gold;   /* Money carried                           */
+  int bank_gold;  /* Gold the char has in a bank account     */
+  int exp;   /* The experience of the player            */
+  sbyte hitroll;  /* Any bonus or penalty to the hit roll    */
+  sbyte damroll;  /* Any bonus or penalty to the damage roll */
 };
 
 struct THREE_char_special_data_saved {
-  int alignment;		/* +-1000 for alignments                */
-  long idnum;			/* player's idnum; -1 for mobiles       */
-  long act;			/* act flag for NPC's; player flag for PC's */
-  long affected_by;		/* Bitvector for spells/skills affected by */
-  sh_int apply_saving_throw[5];	/* Saving throw (Bonuses)            */
+  int alignment;  /* +-1000 for alignments                */
+  long idnum;   /* player's idnum; -1 for mobiles       */
+  long act;   /* act flag for NPC's; player flag for PC's */
+  long affected_by;  /* Bitvector for spells/skills affected by */
+  sh_int apply_saving_throw[5]; /* Saving throw (Bonuses)            */
 };
 
 struct THREE_player_special_data_saved {
-  byte skills[THREE_MAX_SKILLS + 1];	/* array of skills plus skill 0 */
-  byte spells_to_learn;		/* How many can you learn yet this level */
-  bool talks[THREE_MAX_TONGUE];	/* PC s Tongues 0 for NPC          */
-  int wimp_level;		/* Below this # of hit points, flee!    */
-  byte freeze_level;		/* Level of god who froze char, if any  */
-  sh_int invis_level;		/* level of invisibility                */
-  room_num load_room;		/* Which room to place char in          */
-  long pref;			/* preference flags for PC's.           */
-  ubyte bad_pws;		/* number of bad password attemps       */
-  sbyte conditions[3];		/* Drunk, full, thirsty                 */
+  byte skills[THREE_MAX_SKILLS + 1]; /* array of skills plus skill 0 */
+  byte spells_to_learn;  /* How many can you learn yet this level */
+  bool talks[THREE_MAX_TONGUE]; /* PC s Tongues 0 for NPC          */
+  int wimp_level;  /* Below this # of hit points, flee!    */
+  byte freeze_level;  /* Level of god who froze char, if any  */
+  sh_int invis_level;  /* level of invisibility                */
+  room_num load_room;  /* Which room to place char in          */
+  long pref;   /* preference flags for PC's.           */
+  ubyte bad_pws;  /* number of bad password attemps       */
+  sbyte conditions[3];  /* Drunk, full, thirsty                 */
   ubyte spare0;
   ubyte spare1;
   ubyte spare2;
@@ -103,11 +103,11 @@ struct THREE_player_special_data_saved {
 
 /* An affect structure.  Used in char_file_u *DO*NOT*CHANGE* */
 struct THREE_affected_type {
-  sh_int type;			/* The type of spell that caused this      */
-  sh_int duration;		/* For how long its effects will last      */
-  sbyte modifier;		/* This is added to apropriate ability     */
-  byte location;		/* Tells which ability to change(APPLY_XXX) */
-  long bitvector;		/* Tells which bits to set (AFF_XXX)       */
+  sh_int type;   /* The type of spell that caused this      */
+  sh_int duration;  /* For how long its effects will last      */
+  sbyte modifier;  /* This is added to apropriate ability     */
+  byte location;  /* Tells which ability to change(APPLY_XXX) */
+  long bitvector;  /* Tells which bits to set (AFF_XXX)       */
 
   struct THREE_affected_type *next;
 };
@@ -120,11 +120,11 @@ struct THREE_char_file_u {
   byte class;
   byte level;
   sh_int hometown;
-  time_t birth;			/* Time of birth of character     */
-  int played;			/* Number of secs played in total */
+  time_t birth;   /* Time of birth of character     */
+  int played;   /* Number of secs played in total */
   ubyte weight;
   ubyte height;
-  char pwd[THREE_MAX_PWD_LENGTH + 1];	/* character's password */
+  char pwd[THREE_MAX_PWD_LENGTH + 1]; /* character's password */
 
   struct THREE_char_special_data_saved char_specials_saved;
   struct THREE_player_special_data_saved player_specials_saved;
@@ -132,8 +132,8 @@ struct THREE_char_file_u {
   struct THREE_char_point_data points;
   struct THREE_affected_type affected[THREE_MAX_AFFECT];
 
-  time_t last_logon;		/* Time (in secs) of last logon */
-  char host[THREE_HOST_LENGTH + 1];	/* host of last logon */
+  time_t last_logon;  /* Time (in secs) of last logon */
+  char host[THREE_HOST_LENGTH + 1]; /* host of last logon */
 };
 
 #define TWO_MAX_PWD_LENGTH  10
@@ -144,7 +144,7 @@ struct THREE_char_file_u {
 
 struct TWO_char_ability_data {
   sbyte str;
-  sbyte str_add;		/* 000 - 100 if strength 18             */
+  sbyte str_add;  /* 000 - 100 if strength 18             */
   sbyte intel;
   sbyte wis;
   sbyte dex;
@@ -153,31 +153,31 @@ struct TWO_char_ability_data {
 
 struct TWO_char_point_data {
   sh_int mana;
-  sh_int max_mana;		/* Max move for PC/NPC                     */
+  sh_int max_mana;  /* Max move for PC/NPC                     */
   sh_int hit;
-  sh_int max_hit;		/* Max hit for PC/NPC                      */
+  sh_int max_hit;  /* Max hit for PC/NPC                      */
   sh_int move;
-  sh_int max_move;		/* Max move for PC/NPC                     */
-  sh_int armor;			/* Internal -100..100, external -10..10 AC */
-  int gold;			/* Money carried                           */
-  int bank_gold;		/* Gold the char has in a bank account     */
-  int exp;			/* The experience of the player            */
-  sbyte hitroll;		/* Any bonus or penalty to the hit roll    */
-  sbyte damroll;		/* Any bonus or penalty to the damage roll */
+  sh_int max_move;  /* Max move for PC/NPC                     */
+  sh_int armor;   /* Internal -100..100, external -10..10 AC */
+  int gold;   /* Money carried                           */
+  int bank_gold;  /* Gold the char has in a bank account     */
+  int exp;   /* The experience of the player            */
+  sbyte hitroll;  /* Any bonus or penalty to the hit roll    */
+  sbyte damroll;  /* Any bonus or penalty to the damage roll */
 };
 
 struct TWO_char_special2_data {
-  long idnum;			/* player's idnum                       */
-  sh_int load_room;		/* Which room to place char in          */
-  byte spells_to_learn;		/* How many can you learn yet this level */
-  int alignment;		/* +-1000 for alignments                */
-  long act;			/* act flag for NPC's; player flag for PC's */
-  long pref;			/* preference flags for PC's.           */
-  int wimp_level;		/* Below this # of hit points, flee!    */
-  byte freeze_level;		/* Level of god who froze char, if any  */
-  ubyte bad_pws;		/* number of bad password attemps       */
-  sh_int apply_saving_throw[5];	/* Saving throw (Bonuses)              */
-  sbyte conditions[3];		/* Drunk full etc.                      */
+  long idnum;   /* player's idnum                       */
+  sh_int load_room;  /* Which room to place char in          */
+  byte spells_to_learn;  /* How many can you learn yet this level */
+  int alignment;  /* +-1000 for alignments                */
+  long act;   /* act flag for NPC's; player flag for PC's */
+  long pref;   /* preference flags for PC's.           */
+  int wimp_level;  /* Below this # of hit points, flee!    */
+  byte freeze_level;  /* Level of god who froze char, if any  */
+  ubyte bad_pws;  /* number of bad password attemps       */
+  sh_int apply_saving_throw[5]; /* Saving throw (Bonuses)              */
+  sbyte conditions[3];  /* Drunk full etc.                      */
   ubyte spare0;
   ubyte spare1;
   ubyte spare2;
@@ -204,11 +204,11 @@ struct TWO_char_special2_data {
 
 /* Used in CHAR_FILE_U *DO*NOT*CHANGE* */
 struct TWO_affected_type {
-  sbyte type;			/* The type of spell that caused this      */
-  sh_int duration;		/* For how long its effects will last      */
-  sbyte modifier;		/* This is added to apropriate ability     */
-  byte location;		/* Tells which ability to change(APPLY_XXX) */
-  long bitvector;		/* Tells which bits to set (AFF_XXX)       */
+  sbyte type;   /* The type of spell that caused this      */
+  sh_int duration;  /* For how long its effects will last      */
+  sbyte modifier;  /* This is added to apropriate ability     */
+  byte location;  /* Tells which ability to change(APPLY_XXX) */
+  long bitvector;  /* Tells which bits to set (AFF_XXX)       */
   struct TWO_affected_type *next;
 };
 
@@ -216,8 +216,8 @@ struct TWO_char_file_u {
   byte sex;
   byte class;
   byte level;
-  time_t birth;			/* Time of birth of character     */
-  int played;			/* Number of secs played in total */
+  time_t birth;   /* Time of birth of character     */
+  int played;   /* Number of secs played in total */
   ubyte weight;
   ubyte height;
   char title[80];
@@ -229,8 +229,8 @@ struct TWO_char_file_u {
   byte skills[TWO_MAX_SKILLS];
   struct TWO_affected_type affected[TWO_MAX_AFFECT];
   struct TWO_char_special2_data specials2;
-  time_t last_logon;		/* Time (in secs) of last logon */
-  char host[TWO_HOST_LEN + 1];	/* host of last logon */
+  time_t last_logon;  /* Time (in secs) of last logon */
+  char host[TWO_HOST_LEN + 1]; /* host of last logon */
   char name[20];
   char pwd[TWO_MAX_PWD_LENGTH + 1];
 };
@@ -281,34 +281,34 @@ int main(int argc, char *argv[])
     stThree.char_specials_saved.alignment = stTwo.specials2.alignment;
     stThree.char_specials_saved.idnum = stTwo.specials2.idnum;
     stThree.char_specials_saved.act = stTwo.specials2.act;
-    stThree.char_specials_saved.affected_by = 0;	/* ??? */
+    stThree.char_specials_saved.affected_by = 0; /* ??? */
     for (iIndex = 0; iIndex < 5; iIndex++)
       stThree.char_specials_saved.apply_saving_throw[iIndex] =
-	  stTwo.specials2.apply_saving_throw[iIndex];
+   stTwo.specials2.apply_saving_throw[iIndex];
 
     for (iIndex = 0; iIndex < THREE_MAX_SKILLS; iIndex++)
       stThree.player_specials_saved.skills[iIndex] = 0;
     for (iIndex = 0; iIndex < 53; iIndex++)
       if (iIndex > 44) {
-	stThree.player_specials_saved.skills[
-		    aiSkillMappings[iIndex - 45]] = stTwo.skills[iIndex];
+ stThree.player_specials_saved.skills[
+      aiSkillMappings[iIndex - 45]] = stTwo.skills[iIndex];
       } else
-	stThree.player_specials_saved.skills[iIndex] =
-	    stTwo.skills[iIndex];
+ stThree.player_specials_saved.skills[iIndex] =
+     stTwo.skills[iIndex];
     stThree.player_specials_saved.spells_to_learn =
-	stTwo.specials2.spells_to_learn;
+ stTwo.specials2.spells_to_learn;
     for (iIndex = 0; iIndex < THREE_MAX_TONGUE; iIndex++)
       stThree.player_specials_saved.talks[iIndex] = stTwo.talks[iIndex];
     stThree.player_specials_saved.wimp_level = stTwo.specials2.wimp_level;
     stThree.player_specials_saved.freeze_level =
-	stTwo.specials2.freeze_level;
+ stTwo.specials2.freeze_level;
     stThree.player_specials_saved.invis_level = 0;
     stThree.player_specials_saved.load_room = stTwo.specials2.load_room;
     stThree.player_specials_saved.pref = stTwo.specials2.pref;
     stThree.player_specials_saved.bad_pws = stTwo.specials2.bad_pws;
     for (iIndex = 0; iIndex < 3; iIndex++)
       stThree.player_specials_saved.conditions[iIndex] =
-	  stTwo.specials2.conditions[iIndex];
+   stTwo.specials2.conditions[iIndex];
     stThree.player_specials_saved.spare0 = 0;
     stThree.player_specials_saved.spare1 = 0;
     stThree.player_specials_saved.spare2 = 0;
@@ -366,8 +366,8 @@ int main(int argc, char *argv[])
     strcpy(stThree.host, stTwo.host);
 
     printf("[%2d %s] %s %s\n",
-	   stThree.level, apcClassAbbrev[(int)stThree.class],
-	   stThree.name, stThree.title);
+    stThree.level, apcClassAbbrev[(int)stThree.class],
+    stThree.name, stThree.title);
 
     fwrite(&stThree, sizeof(struct THREE_char_file_u), 1, ptThreeHndl);
   }

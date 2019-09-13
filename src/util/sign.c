@@ -13,8 +13,8 @@
  * This program comes with no warranty of any kind, expressed or implied.
  */
 
-#define MAX_FILESIZE	8192
-#define LINEBUF_SIZE	128
+#define MAX_FILESIZE 8192
+#define LINEBUF_SIZE 128
 
 #include "conf.h"
 #include "sysdep.h"
@@ -145,12 +145,12 @@ int main(int argc, char *argv[])
     if (fork() == 0) {
       remaining = len;
       do {
-	if ((bytes_written = write(desc, txt, remaining)) < 0)
-	  exit(0);
-	else {
-	  txt += bytes_written;
-	  remaining -= bytes_written;
-	}
+ if ((bytes_written = write(desc, txt, remaining)) < 0)
+   exit(0);
+ else {
+   txt += bytes_written;
+   remaining -= bytes_written;
+ }
       } while (remaining > 0);
       exit(0);
     }

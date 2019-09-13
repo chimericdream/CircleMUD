@@ -89,7 +89,7 @@ void look_at_target(struct char_data *ch, char *arg);
 /* local globals */
 int *cmd_sort_info;
 
-/* For show_obj_to_char 'mode'.	/-- arbitrary */
+/* For show_obj_to_char 'mode'. /-- arbitrary */
 #define SHOW_OBJ_LONG 0
 #define SHOW_OBJ_SHORT 1
 #define SHOW_OBJ_ACTION 2
@@ -1002,7 +1002,7 @@ ACMD(do_time) {
      * for a bug introduced in the ordinal display that caused 11, 12, and 13
      * to be incorrectly displayed as 11st, 12nd, and 13rd.  Nate Winters
      * <wintersn@HOTMAIL.COM> had already submitted a fix, but it hard-coded a
-     * limit on ordinal display which I want to avoid.	-dak
+     * limit on ordinal display which I want to avoid. -dak
      */
 
     suf = "th";

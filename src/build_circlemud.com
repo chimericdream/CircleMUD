@@ -8,12 +8,12 @@ $! OpenVMS using DEC C and the DEC C TCP/IP socket routines.
 $!
 $! The script accepts the following parameters.
 $!
-$!	P1	ALL		Build Everything.
-$!		CIRCLE		Just Build [-.BIN]CIRCLE.EXE.
-$!		UTILS		Just Build The CircleMUD Utilities.
+$! P1 ALL  Build Everything.
+$!  CIRCLE  Just Build [-.BIN]CIRCLE.EXE.
+$!  UTILS  Just Build The CircleMUD Utilities.
 $!
-$!	P2	DEBUG		Build With Debugger Information.
-$!		NODEBUG		Build Withoug Debugger Information.
+$! P2 DEBUG  Build With Debugger Information.
+$!  NODEBUG  Build Withoug Debugger Information.
 $!
 $! The default is "ALL" and "NODEBUG".
 $!
@@ -145,7 +145,7 @@ $ ENDIF
 $!
 $! Tell The User What We Are Compiling.
 $!
-$  WRITE SYS$OUTPUT "	",CIRCLE_SOURCE_FILE
+$  WRITE SYS$OUTPUT " ",CIRCLE_SOURCE_FILE
 $!
 $! Compile The File.
 $!
@@ -384,7 +384,7 @@ $!
 $ IF (F$SEARCH("SYS$DISK:[]CONF.H").EQS."")
 $ THEN
 $!
-$!  The File Dosen't Exist So Check To See If The CONF.H_VMS File Exists. 
+$!  The File Dosen't Exist So Check To See If The CONF.H_VMS File Exists.
 $!
 $   IF (F$SEARCH("SYS$DISK:[]CONF.H_VMS").NES."")
 $   THEN

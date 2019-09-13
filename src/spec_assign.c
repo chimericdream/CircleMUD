@@ -281,13 +281,13 @@ void assign_mobiles(void)
 /* assign special procedures to objects */
 void assign_objects(void)
 {
-  ASSIGNOBJ(3096, gen_board);	/* social board */
-  ASSIGNOBJ(3097, gen_board);	/* freeze board */
-  ASSIGNOBJ(3098, gen_board);	/* immortal board */
-  ASSIGNOBJ(3099, gen_board);	/* mortal board */
+  ASSIGNOBJ(3096, gen_board); /* social board */
+  ASSIGNOBJ(3097, gen_board); /* freeze board */
+  ASSIGNOBJ(3098, gen_board); /* immortal board */
+  ASSIGNOBJ(3099, gen_board); /* mortal board */
 
-  ASSIGNOBJ(3034, bank);	/* atm */
-  ASSIGNOBJ(3036, bank);	/* cashcard */
+  ASSIGNOBJ(3034, bank); /* atm */
+  ASSIGNOBJ(3036, bank); /* cashcard */
 }
 
 
@@ -303,5 +303,5 @@ void assign_rooms(void)
   if (dts_are_dumps)
     for (i = 0; i <= top_of_world; i++)
       if (ROOM_FLAGGED(i, ROOM_DEATH))
-	world[i].func = dump;
+ world[i].func = dump;
 }

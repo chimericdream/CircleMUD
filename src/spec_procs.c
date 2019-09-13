@@ -60,8 +60,8 @@ int spell_sort_info[MAX_SKILLS + 1];
 
 int compare_spells(const void *x, const void *y)
 {
-  int	a = *(const int *)x,
-	b = *(const int *)y;
+  int a = *(const int *)x,
+ b = *(const int *)y;
 
   return strcmp(spell_info[a].name, spell_info[b].name);
 }
@@ -106,10 +106,10 @@ const char *prac_types[] = {
   "skill"
 };
 
-#define LEARNED_LEVEL	0	/* % known which is considered "learned" */
-#define MAX_PER_PRAC	1	/* max percent gain in skill per practice */
-#define MIN_PER_PRAC	2	/* min percent gain in skill per practice */
-#define PRAC_TYPE	3	/* should it say 'spell' or 'skill'?	 */
+#define LEARNED_LEVEL 0 /* % known which is considered "learned" */
+#define MAX_PER_PRAC 1 /* max percent gain in skill per practice */
+#define MIN_PER_PRAC 2 /* min percent gain in skill per practice */
+#define PRAC_TYPE 3 /* should it say 'spell' or 'skill'?  */
 
 /* actual prac_params are in class.c */
 extern int prac_params[4][NUM_CLASSES];
@@ -132,9 +132,9 @@ void list_skills(struct char_data *ch)
   }
 
   len = snprintf(buf2, sizeof(buf2), "You have %d practice session%s remaining.\r\n"
-	"You know of the following %ss:\r\n", GET_PRACTICES(ch),
-	GET_PRACTICES(ch) == 1 ? "" : "s", SPLSKL(ch));
-  
+ "You know of the following %ss:\r\n", GET_PRACTICES(ch),
+ GET_PRACTICES(ch) == 1 ? "" : "s", SPLSKL(ch));
+
   for (sortpos = 1; sortpos <= MAX_SKILLS; sortpos++) {
     i = spell_sort_info[sortpos];
     if (GET_LEVEL(ch) >= spell_info[i].min_level[(int) GET_CLASS(ch)]) {
@@ -235,9 +235,9 @@ SPECIAL(mayor)
   char actbuf[MAX_INPUT_LENGTH];
 
   const char open_path[] =
-	"W3a3003b33000c111d0d111Oe333333Oe22c222112212111a1S.";
+ "W3a3003b33000c111d0d111Oe333333Oe22c222112212111a1S.";
   const char close_path[] =
-	"W3a3003b33000c111d0d111CE333333CE22c222112212111a1S.";
+ "W3a3003b33000c111d0d111CE333333CE22c222112212111a1S.";
 
   static const char *path = NULL;
   static int path_index;
@@ -283,12 +283,12 @@ SPECIAL(mayor)
 
   case 'b':
     act("$n says 'What a view!  I must get something done about that dump!'",
-	FALSE, ch, 0, 0, TO_ROOM);
+ FALSE, ch, 0, 0, TO_ROOM);
     break;
 
   case 'c':
     act("$n says 'Vandals!  Youngsters nowadays have no respect for anything!'",
-	FALSE, ch, 0, 0, TO_ROOM);
+ FALSE, ch, 0, 0, TO_ROOM);
     break;
 
   case 'd':
@@ -304,13 +304,13 @@ SPECIAL(mayor)
     break;
 
   case 'O':
-    do_gen_door(ch, strcpy(actbuf, "gate"), 0, SCMD_UNLOCK);	/* strcpy: OK */
-    do_gen_door(ch, strcpy(actbuf, "gate"), 0, SCMD_OPEN);	/* strcpy: OK */
+    do_gen_door(ch, strcpy(actbuf, "gate"), 0, SCMD_UNLOCK); /* strcpy: OK */
+    do_gen_door(ch, strcpy(actbuf, "gate"), 0, SCMD_OPEN); /* strcpy: OK */
     break;
 
   case 'C':
-    do_gen_door(ch, strcpy(actbuf, "gate"), 0, SCMD_CLOSE);	/* strcpy: OK */
-    do_gen_door(ch, strcpy(actbuf, "gate"), 0, SCMD_LOCK);	/* strcpy: OK */
+    do_gen_door(ch, strcpy(actbuf, "gate"), 0, SCMD_CLOSE); /* strcpy: OK */
+    do_gen_door(ch, strcpy(actbuf, "gate"), 0, SCMD_LOCK); /* strcpy: OK */
     break;
 
   case '.':
@@ -506,16 +506,16 @@ SPECIAL(puff)
 
   switch (rand_number(0, 60)) {
   case 0:
-    do_say(ch, strcpy(actbuf, "My god!  It's full of stars!"), 0, 0);	/* strcpy: OK */
+    do_say(ch, strcpy(actbuf, "My god!  It's full of stars!"), 0, 0); /* strcpy: OK */
     return (TRUE);
   case 1:
-    do_say(ch, strcpy(actbuf, "How'd all those fish get up here?"), 0, 0);	/* strcpy: OK */
+    do_say(ch, strcpy(actbuf, "How'd all those fish get up here?"), 0, 0); /* strcpy: OK */
     return (TRUE);
   case 2:
-    do_say(ch, strcpy(actbuf, "I'm a very female dragon."), 0, 0);	/* strcpy: OK */
+    do_say(ch, strcpy(actbuf, "I'm a very female dragon."), 0, 0); /* strcpy: OK */
     return (TRUE);
   case 3:
-    do_say(ch, strcpy(actbuf, "I've got a peaceful, easy feeling."), 0, 0);	/* strcpy: OK */
+    do_say(ch, strcpy(actbuf, "I've got a peaceful, easy feeling."), 0, 0); /* strcpy: OK */
     return (TRUE);
   default:
     return (FALSE);
@@ -627,7 +627,7 @@ SPECIAL(cityguard)
     if (spit_social > 0) {
       char spitbuf[MAX_NAME_LENGTH + 1];
 
-      strncpy(spitbuf, GET_NAME(spittle), sizeof(spitbuf));	/* strncpy: OK */
+      strncpy(spitbuf, GET_NAME(spittle), sizeof(spitbuf)); /* strncpy: OK */
       spitbuf[sizeof(spitbuf) - 1] = '\0';
 
       do_action(ch, spitbuf, spit_social, 0);
@@ -683,7 +683,7 @@ SPECIAL(pet_shops)
       pet->player.name = strdup(buf);
 
       snprintf(buf, sizeof(buf), "%sA small sign on a chain around the neck says 'My name is %s'\r\n",
-	      pet->player.description, pet_name);
+       pet->player.description, pet_name);
       /* free(pet->player.description); don't free the prototype! */
       pet->player.description = strdup(buf);
     }

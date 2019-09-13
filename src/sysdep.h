@@ -95,27 +95,27 @@
  * just running in Syntax Check mode.)
  *
  * NOTE: The GNU C library version 2.1.3 leaks a tiny bit of memory
- *	by itself. You will see something similar to:
+ * by itself. You will see something similar to:
  *
- *	- 0000000000 Free 36910 was never alloc'd /lib/libcrypt.so.1:(fcrypt+0x883)[0x4001b9ef]
+ * - 0000000000 Free 36910 was never alloc'd /lib/libcrypt.so.1:(fcrypt+0x883)[0x4001b9ef]
  *
- *	Memory not freed:
- *	-----------------
- *	   Address     Size     Caller
- *	0x080ca830      0xf  at /lib/libc.so.6:(__strdup+0x29)[0x400a6a09]
- *	0x080ca848      0xc  at /lib/libc.so.6:(adjtime+0x25c)[0x400d127c]
- *	0x080ca858      0xc  at /lib/libc.so.6:(adjtime+0x25c)[0x400d127c]
- *	0x080ca868      0xc  at /lib/libc.so.6:(adjtime+0x25c)[0x400d127c]
+ * Memory not freed:
+ * -----------------
+ *    Address     Size     Caller
+ * 0x080ca830      0xf  at /lib/libc.so.6:(__strdup+0x29)[0x400a6a09]
+ * 0x080ca848      0xc  at /lib/libc.so.6:(adjtime+0x25c)[0x400d127c]
+ * 0x080ca858      0xc  at /lib/libc.so.6:(adjtime+0x25c)[0x400d127c]
+ * 0x080ca868      0xc  at /lib/libc.so.6:(adjtime+0x25c)[0x400d127c]
  *
  * But with GNU C library version 2.2.4:
  *
- *	No memory leaks.
+ * No memory leaks.
  *
  * Read the entire "Allocation Debugging" section of the GNU C library
  * documentation before setting this to '1'.
  */
 
-#define CIRCLE_GNU_LIBC_MEMORY_TRACK	0	/* 0 = off, 1 = on */
+#define CIRCLE_GNU_LIBC_MEMORY_TRACK 0 /* 0 = off, 1 = on */
 
 
 /************************************************************************/
@@ -200,7 +200,7 @@ extern void abort (), exit ();
 
 /* Header files *******************************************************/
 
- 
+
 /* Header files common to all source files */
 
 #ifdef HAVE_LIMITS_H
@@ -248,7 +248,7 @@ extern void abort (), exit ();
 
 #ifndef HAVE_STRUCT_IN_ADDR
 struct in_addr {
-  unsigned long int s_addr;	/* for inet_addr, etc. */
+  unsigned long int s_addr; /* for inet_addr, etc. */
 }
 #endif
 
@@ -294,7 +294,7 @@ struct in_addr {
 #  include <signal.h>
 #  undef _POSIX_C_SOURCE
 # else
-#  include <signal.h>	/* GNU libc 6 already defines _POSIX_C_SOURCE. */
+#  include <signal.h> /* GNU libc 6 already defines _POSIX_C_SOURCE. */
 # endif
 #endif
 
@@ -336,39 +336,39 @@ struct in_addr {
 #endif
 
 #if !defined(__GNUC__)
-# define __attribute__(x)	/* nothing */
+# define __attribute__(x) /* nothing */
 #endif
 
 #if defined(__MWERKS__)
-# define isascii(c)	(((c) & ~0x7f) == 0)	/* So easy to have, but ... */
+# define isascii(c) (((c) & ~0x7f) == 0) /* So easy to have, but ... */
 #endif
 
 /* Socket/header miscellany. */
 
-#if defined(CIRCLE_WINDOWS)	/* Definitions for Win32 */
+#if defined(CIRCLE_WINDOWS) /* Definitions for Win32 */
 
 # define snprintf _snprintf
 # define vsnprintf _vsnprintf
 # define PATH_MAX MAX_PATH
 
-# if !defined(__BORLANDC__) && !defined(LCC_WIN32)	/* MSVC */
+# if !defined(__BORLANDC__) && !defined(LCC_WIN32) /* MSVC */
 #  define chdir _chdir
-#  pragma warning(disable:4761)		/* Integral size mismatch. */
-#  pragma warning(disable:4244)		/* Possible loss of data. */
+#  pragma warning(disable:4761)  /* Integral size mismatch. */
+#  pragma warning(disable:4244)  /* Possible loss of data. */
 # endif
 
-# if defined(__BORLANDC__)	/* Silence warnings we don't care about. */
-#  pragma warn -par	/* to turn off >parameter< 'ident' is never used. */
-#  pragma warn -pia	/* to turn off possibly incorrect assignment. 'if (!(x=a))' */
-#  pragma warn -sig	/* to turn off conversion may lose significant digits. */
+# if defined(__BORLANDC__) /* Silence warnings we don't care about. */
+#  pragma warn -par /* to turn off >parameter< 'ident' is never used. */
+#  pragma warn -pia /* to turn off possibly incorrect assignment. 'if (!(x=a))' */
+#  pragma warn -sig /* to turn off conversion may lose significant digits. */
 # endif
 
-# ifndef _WINSOCK2API_	/* Winsock1 and Winsock 2 conflict. */
+# ifndef _WINSOCK2API_ /* Winsock1 and Winsock 2 conflict. */
 #  include <winsock.h>
 # endif
 
-# ifndef FD_SETSIZE	/* MSVC 6 is reported to have 64. */
-#  define FD_SETSIZE		1024
+# ifndef FD_SETSIZE /* MSVC 6 is reported to have 64. */
+#  define FD_SETSIZE  1024
 # endif
 
 #elif defined(CIRCLE_VMS)
@@ -389,17 +389,17 @@ struct in_addr {
 
 /* SOCKET -- must be after the winsock.h #include. */
 #ifdef CIRCLE_WINDOWS
-# define CLOSE_SOCKET(sock)	closesocket(sock)
-  typedef SOCKET		socket_t;
+# define CLOSE_SOCKET(sock) closesocket(sock)
+  typedef SOCKET  socket_t;
 #else
-# define CLOSE_SOCKET(sock)	close(sock)
-  typedef int			socket_t;
+# define CLOSE_SOCKET(sock) close(sock)
+  typedef int   socket_t;
 #endif
 
-#if defined(__cplusplus)	/* C++ */
-#define cpp_extern	extern
-#else				/* C */
-#define cpp_extern	/* Nothing */
+#if defined(__cplusplus) /* C++ */
+#define cpp_extern extern
+#else    /* C */
+#define cpp_extern /* Nothing */
 #endif
 
 /* Guess if we have the getrlimit()/setrlimit() functions */
@@ -487,7 +487,7 @@ struct in_addr {
 #ifdef NEED_BZERO_PROTO
      void bzero(char *b, int length);
 #endif
- 
+
 #ifdef NEED_CRYPT_PROTO
    char *crypt(const char *key, const char *salt);
 #endif
@@ -663,7 +663,7 @@ struct in_addr {
 
 #ifdef NEED_SELECT_PROTO
    int select(int nfds, fd_set *readfds, fd_set *writefds,
-          fd_set *exceptfds, struct timeval *timeout);   
+          fd_set *exceptfds, struct timeval *timeout);
 #endif
 
 #ifdef NEED_SETITIMER_PROTO
@@ -677,7 +677,7 @@ struct in_addr {
 
 #ifdef NEED_SETSOCKOPT_PROTO
    int setsockopt(socket_t s, int level, int optname, const char *optval,
-		  int optlen);
+    int optlen);
 #endif
 
 #ifdef NEED_SOCKET_PROTO

@@ -391,9 +391,9 @@ void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int scmd) 
             if (back) {
                 LOCK_DOOR(other_room, obj, rev_dir[door]);
             }
-        
+
             send_to_char(ch, "*Click*\r\n");
-        
+
             break;
 
         case SCMD_UNLOCK:

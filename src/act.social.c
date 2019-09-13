@@ -292,7 +292,7 @@ void boot_social_messages(void) {
 
             break;
         }
-    
+
         /* read the stuff */
         soc_mess_list[curr_soc].act_nr = nr = find_command(next_soc);
         soc_mess_list[curr_soc].hide = hide;
@@ -347,7 +347,7 @@ void boot_social_messages(void) {
                 min_pos = i;
             }
         }
-        
+
         if (curr_soc != min_pos) {
             temp = soc_mess_list[curr_soc];
             soc_mess_list[curr_soc] = soc_mess_list[min_pos];

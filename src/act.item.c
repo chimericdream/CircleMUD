@@ -84,12 +84,12 @@ void perform_put(struct char_data *ch, struct obj_data *obj, struct obj_data *co
 
 /* The following put modes are supported by the code below:
 
-	1) put <object> <container>
-	2) put all.<object> <container>
-	3) put all <container>
+ 1) put <object> <container>
+ 2) put all.<object> <container>
+ 3) put all <container>
 
-	<container> must be in inventory or on ground.
-	all objects to be put into container must be in inventory.
+ <container> must be in inventory or on ground.
+ all objects to be put into container must be in inventory.
 */
 
 ACMD(do_put) {

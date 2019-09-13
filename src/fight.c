@@ -742,9 +742,9 @@ int skill_message(int dam, struct char_data *ch, struct char_data *vict, int att
 
 /*
  * Alert: As of bpl14, this function returns the following codes:
- *	< 0	Victim died.
- *	= 0	No damage.
- *	> 0	How much damage done.
+ * < 0 Victim died.
+ * = 0 No damage.
+ * > 0 How much damage done.
  */
 int damage(struct char_data *ch, struct char_data *victim, int dam, int attacktype) {
     if (GET_POS(victim) <= POS_DEAD) {
@@ -838,7 +838,7 @@ int damage(struct char_data *ch, struct char_data *victim, int dam, int attackty
      * dam_message just sends a generic "You hit $n extremely hard.".
      * skill_message is preferable to dam_message because it is more
      * descriptive.
-     * 
+     *
      * If we are _not_ attacking with a weapon (i.e. a spell), always use
      * skill_message. If we are attacking with a weapon: If this is a miss or a
      * death blow, send a skill_message if one exists; if not, default to a

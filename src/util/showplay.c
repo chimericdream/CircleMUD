@@ -73,9 +73,9 @@ void show(char *filename)
     }
 
     printf("%5d. ID: %5ld (%c) [%2d %s] %-16s %9dg %9db\n", ++num,
-	   player.char_specials_saved.idnum, sexname, player.level,
-	   classname, player.name, player.points.gold,
-	   player.points.bank_gold);
+    player.char_specials_saved.idnum, sexname, player.level,
+    classname, player.name, player.points.gold,
+    player.points.bank_gold);
   }
 }
 

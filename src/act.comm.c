@@ -275,7 +275,7 @@ ACMD(do_spec_comm) {
 
 /*
  * buf1, buf2 = MAX_OBJECT_NAME_LENGTH
- *	(if it existed)
+ * (if it existed)
  */
 ACMD(do_write) {
     struct obj_data *paper, *pen = NULL;

@@ -45,12 +45,12 @@ ACMD(do_olc);
 void olc_bitvector(int *bv, const char **names, char *arg);
 
 const char *olc_modes[] = {
-  "set",			/* set OLC characteristics */
-  "show",			/* show OLC characteristics */
-  ".",				/* repeat last modification command */
-  "room",			/* modify a room */
-  "mobile",			/* modify a mobile */
-  "object",			/* modify an object */
+  "set",   /* set OLC characteristics */
+  "show",   /* show OLC characteristics */
+  ".",    /* repeat last modification command */
+  "room",   /* modify a room */
+  "mobile",   /* modify a mobile */
+  "object",   /* modify an object */
   "\n"
 };
 
@@ -59,7 +59,7 @@ const char *olc_commands[] = {
   "name",
   "description",
   "aliases",
-  "\n",				/* many more to be added */
+  "\n",    /* many more to be added */
 };
 
 
@@ -93,7 +93,7 @@ ACMD(do_olc)
     return;
   case OLC_REPEAT:
     if (!(olc_mode = GET_LAST_OLC_MODE(ch)) ||
-	((olc_targ = GET_LAST_OLC_TARG(ch)) == NULL)) {
+ ((olc_targ = GET_LAST_OLC_TARG(ch)) == NULL)) {
       send_to_char(ch, "No last OLC operation!\r\n");
       return;
     }
@@ -103,13 +103,13 @@ ACMD(do_olc)
       /* room specified.  take the numeric argument off */
       argument = one_argument(argument, arg);
       if (!is_number(arg)) {
-	send_to_char(ch, "Invalid room vnum '%s'.\r\n", arg);
-	return;
+ send_to_char(ch, "Invalid room vnum '%s'.\r\n", arg);
+ return;
       }
       vnum = atoi(arg);
       if ((rnum = real_room(vnum)) == NOWHERE) {
-	send_to_char(ch, "No such room!\r\n");
-	return;
+ send_to_char(ch, "No such room!\r\n");
+ return;
       }
     } else {
       rnum = IN_ROOM(ch);
@@ -118,7 +118,7 @@ ACMD(do_olc)
     }
 
 /*   if (!ROOM_FLAGGED(rnum, ROOM_OLC))
-	 send_to_char(ch, "That room is not modifyable.\r\n");
+  send_to_char(ch, "That room is not modifyable.\r\n");
      else
 */
     olc_targ = (void *) &(world[rnum]);
@@ -284,7 +284,7 @@ void olc_string(char **string, size_t maxlen, char *arg)
       send_to_char(olc_ch, "String too long (cannot be more than %d chars).\r\n", (int) maxlen);
     } else {
       if (*string != NULL)
-	free(*string);
+ free(*string);
       *string = strdup(arg);
       send_to_char(olc_ch, "%s", OK);
     }
@@ -312,7 +312,7 @@ void olc_bitvector(int *bv, const char **names, char *arg)
     newbv = 0;
 
   while (*arg) {
-    arg = one_argument(arg, buf);	/* get next argument */
+    arg = one_argument(arg, buf); /* get next argument */
 
     /* change to upper-case */
     for (this_name = buf; *this_name; this_name++)
@@ -322,9 +322,9 @@ void olc_bitvector(int *bv, const char **names, char *arg)
     if (*buf == '+' || *buf == '-') {
       this_name = buf + 1;
       if (*buf == '-')
-	doremove = TRUE;
+ doremove = TRUE;
       else
-	doremove = FALSE;
+ doremove = FALSE;
     } else {
       this_name = buf;
       doremove = FALSE;
@@ -335,9 +335,9 @@ void olc_bitvector(int *bv, const char **names, char *arg)
       send_to_char(olc_ch, "Unknown flag: %s\r\n", this_name);
     else {
       if (doremove)
-	REMOVE_BIT(newbv, (1 << flagnum));
+ REMOVE_BIT(newbv, (1 << flagnum));
       else
-	SET_BIT(newbv, (1 << flagnum));
+ SET_BIT(newbv, (1 << flagnum));
     }
   }
 

@@ -7,7 +7,7 @@
 ************************************************************************* */
 
 
-/* 
+/*
    WARNING:  THIS CODE IS A HACK.  WE CAN NOT AND WILL NOT BE RESPONSIBLE
    FOR ANY NASUEA, DIZZINESS, VOMITING, OR SHORTNESS OF BREATH RESULTING
    FROM READING THIS CODE.  PREGNANT WOMEN AND INDIVIDUALS WITH BACK
@@ -91,9 +91,9 @@ void read_file(void)
   while (!feof(fl)) {
     fread(&player, sizeof(struct char_file_u), 1, fl);
     if (!feof(fl) && player.level >= MIN_LEVEL &&
-	!(IS_SET(player.char_specials_saved.act, PLR_FROZEN)) &&
-	!(IS_SET(player.char_specials_saved.act, PLR_NOWIZLIST)) &&
-	!(IS_SET(player.char_specials_saved.act, PLR_DELETED)))
+ !(IS_SET(player.char_specials_saved.act, PLR_FROZEN)) &&
+ !(IS_SET(player.char_specials_saved.act, PLR_NOWIZLIST)) &&
+ !(IS_SET(player.char_specials_saved.act, PLR_DELETED)))
       add_name(player.level, player.name);
   }
 
@@ -136,11 +136,11 @@ void sort_names(void)
   for (curr_level = levels; curr_level; curr_level = curr_level->next) {
     for (a = curr_level->names; a && a->next; a = a->next) {
       for (b = a->next; b; b = b->next) {
-	if (strcmp(a->name, b->name) > 0) {
-	  strcpy(temp, a->name);
-	  strcpy(a->name, b->name);
-	  strcpy(b->name, temp);
-	}
+ if (strcmp(a->name, b->name) > 0) {
+   strcpy(temp, a->name);
+   strcpy(a->name, b->name);
+   strcpy(b->name, temp);
+ }
       }
     }
   }
@@ -164,7 +164,7 @@ void write_wizlist(FILE * out, int minlev, int maxlev)
 
   for (curr_level = levels; curr_level; curr_level = curr_level->next) {
     if (curr_level->params->level < minlev ||
-	curr_level->params->level > maxlev)
+ curr_level->params->level > maxlev)
       continue;
     i = 39 - (strlen(curr_level->params->level_name) >> 1);
     for (j = 1; j <= i; j++)
@@ -181,34 +181,34 @@ void write_wizlist(FILE * out, int minlev, int maxlev)
     while (curr_name) {
       strcat(buf, curr_name->name);
       if (strlen(buf) > LINE_LEN) {
-	if (curr_level->params->level <= COL_LEVEL)
-	  fprintf(out, IMM_LMARG);
-	else {
-	  i = 40 - (strlen(buf) >> 1);
-	  for (j = 1; j <= i; j++)
-	    fputc(' ', out);
-	}
-	fprintf(out, "%s\n", buf);
-	strcpy(buf, "");
+ if (curr_level->params->level <= COL_LEVEL)
+   fprintf(out, IMM_LMARG);
+ else {
+   i = 40 - (strlen(buf) >> 1);
+   for (j = 1; j <= i; j++)
+     fputc(' ', out);
+ }
+ fprintf(out, "%s\n", buf);
+ strcpy(buf, "");
       } else {
-	if (curr_level->params->level <= COL_LEVEL) {
-	  for (j = 1; j <= (IMM_NSIZE - strlen(curr_name->name)); j++)
-	    strcat(buf, " ");
-	}
-	if (curr_level->params->level > COL_LEVEL)
-	  strcat(buf, "   ");
+ if (curr_level->params->level <= COL_LEVEL) {
+   for (j = 1; j <= (IMM_NSIZE - strlen(curr_name->name)); j++)
+     strcat(buf, " ");
+ }
+ if (curr_level->params->level > COL_LEVEL)
+   strcat(buf, "   ");
       }
       curr_name = curr_name->next;
     }
 
     if (*buf) {
       if (curr_level->params->level <= COL_LEVEL)
-	fprintf(out, "%s%s\n", IMM_LMARG, buf);
+ fprintf(out, "%s%s\n", IMM_LMARG, buf);
       else {
-	i = 40 - (strlen(buf) >> 1);
-	for (j = 1; j <= i; j++)
-	  fputc(' ', out);
-	fprintf(out, "%s\n", buf);
+ i = 40 - (strlen(buf) >> 1);
+ for (j = 1; j <= i; j++)
+   fputc(' ', out);
+ fprintf(out, "%s\n", buf);
       }
     }
     fprintf(out, "\n");
@@ -225,13 +225,13 @@ int main(int argc, char **argv)
 
   if (argc != 5 && argc != 6) {
     printf("Format: %s wizlev wizlistfile immlev immlistfile [pid to signal]\n",
-	   argv[0]);
+    argv[0]);
     exit(0);
   }
   wizlevel = atoi(argv[1]);
   immlevel = atoi(argv[3]);
 
-#ifdef CIRCLE_UNIX	/* Perhaps #ifndef CIRCLE_WINDOWS but ... */
+#ifdef CIRCLE_UNIX /* Perhaps #ifndef CIRCLE_WINDOWS but ... */
   if (argc == 6)
     pid = atoi(argv[5]);
 #endif
@@ -248,7 +248,7 @@ int main(int argc, char **argv)
   write_wizlist(fl, immlevel, wizlevel - 1);
   fclose(fl);
 
-#ifdef CIRCLE_UNIX	/* ... I don't have the platforms to test. */
+#ifdef CIRCLE_UNIX /* ... I don't have the platforms to test. */
   if (pid)
     kill(pid, SIGUSR1);
 #endif

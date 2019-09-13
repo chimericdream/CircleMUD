@@ -82,16 +82,16 @@ void affect_update(void)
     for (af = i->affected; af; af = next) {
       next = af->next;
       if (af->duration >= 1)
-	af->duration--;
-      else if (af->duration == -1)	/* No action */
-	af->duration = -1;	/* GODs only! unlimited */
+ af->duration--;
+      else if (af->duration == -1) /* No action */
+ af->duration = -1; /* GODs only! unlimited */
       else {
-	if ((af->type > 0) && (af->type <= MAX_SPELLS))
-	  if (!af->next || (af->next->type != af->type) ||
-	      (af->next->duration > 0))
-	    if (spell_info[af->type].wear_off_msg)
-	      send_to_char(i, "%s\r\n", spell_info[af->type].wear_off_msg);
-	affect_remove(i, af);
+ if ((af->type > 0) && (af->type <= MAX_SPELLS))
+   if (!af->next || (af->next->type != af->type) ||
+       (af->next->duration > 0))
+     if (spell_info[af->type].wear_off_msg)
+       send_to_char(i, "%s\r\n", spell_info[af->type].wear_off_msg);
+ affect_remove(i, af);
       }
     }
 }
@@ -106,7 +106,7 @@ void affect_update(void)
  * heal spell which requires a rare herb or some such.)
  */
 int mag_materials(struct char_data *ch, int item0, int item1, int item2,
-		      int extract, int verbose)
+        int extract, int verbose)
 {
   struct obj_data *tobj;
   struct obj_data *obj0 = NULL, *obj1 = NULL, *obj2 = NULL;
@@ -127,14 +127,14 @@ int mag_materials(struct char_data *ch, int item0, int item1, int item2,
     if (verbose) {
       switch (rand_number(0, 2)) {
       case 0:
-	send_to_char(ch, "A wart sprouts on your nose.\r\n");
-	break;
+ send_to_char(ch, "A wart sprouts on your nose.\r\n");
+ break;
       case 1:
-	send_to_char(ch, "Your hair falls out in clumps.\r\n");
-	break;
+ send_to_char(ch, "Your hair falls out in clumps.\r\n");
+ break;
       case 2:
-	send_to_char(ch, "A huge corn develops on your big toe.\r\n");
-	break;
+ send_to_char(ch, "A huge corn develops on your big toe.\r\n");
+ break;
       }
     }
     return (FALSE);
@@ -165,7 +165,7 @@ int mag_materials(struct char_data *ch, int item0, int item1, int item2,
  * -1 = dead, otherwise the amount of damage done.
  */
 int mag_damage(int level, struct char_data *ch, struct char_data *victim,
-		     int spellnum, int savetype)
+       int spellnum, int savetype)
 {
   int dam = 0;
 
@@ -175,7 +175,7 @@ int mag_damage(int level, struct char_data *ch, struct char_data *victim,
   switch (spellnum) {
     /* Mostly mages */
   case SPELL_MAGIC_MISSILE:
-  case SPELL_CHILL_TOUCH:	/* chill touch also has an affect */
+  case SPELL_CHILL_TOUCH: /* chill touch also has an affect */
     if (IS_MAGIC_USER(ch))
       dam = dice(1, 8) + 1;
     else
@@ -275,10 +275,10 @@ int mag_damage(int level, struct char_data *ch, struct char_data *victim,
  * affect_join(vict, aff, add_dur, avg_dur, add_mod, avg_mod)
  */
 
-#define MAX_SPELL_AFFECTS 5	/* change if more needed */
+#define MAX_SPELL_AFFECTS 5 /* change if more needed */
 
 void mag_affects(int level, struct char_data *ch, struct char_data *victim,
-		      int spellnum, int savetype)
+        int spellnum, int savetype)
 {
   struct affected_type af[MAX_SPELL_AFFECTS];
   bool accum_affect = FALSE, accum_duration = FALSE;
@@ -497,8 +497,8 @@ void mag_affects(int level, struct char_data *ch, struct char_data *victim,
   if (IS_NPC(victim) && !affected_by_spell(victim, spellnum))
     for (i = 0; i < MAX_SPELL_AFFECTS; i++)
       if (AFF_FLAGGED(victim, af[i].bitvector)) {
-	send_to_char(ch, "%s", NOEFFECT);
-	return;
+ send_to_char(ch, "%s", NOEFFECT);
+ return;
       }
 
   /*
@@ -526,7 +526,7 @@ void mag_affects(int level, struct char_data *ch, struct char_data *victim,
  * is the one you should change to add new group spells.
  */
 void perform_mag_groups(int level, struct char_data *ch,
-			struct char_data *tch, int spellnum, int savetype)
+   struct char_data *tch, int spellnum, int savetype)
 {
   switch (spellnum) {
     case SPELL_GROUP_HEAL:
@@ -636,7 +636,7 @@ void mag_areas(int level, struct char_data *ch, int spellnum, int savetype)
     act(to_char, FALSE, ch, 0, 0, TO_CHAR);
   if (to_room != NULL)
     act(to_room, FALSE, ch, 0, 0, TO_ROOM);
-  
+
 
   for (tch = world[IN_ROOM(ch)].people; tch; tch = next_tch) {
     next_tch = tch->next_in_room;
@@ -707,22 +707,22 @@ const char *mag_summon_fail_msgs[] = {
 };
 
 /* These mobiles do not exist. */
-#define MOB_MONSUM_I		130
-#define MOB_MONSUM_II		140
-#define MOB_MONSUM_III		150
-#define MOB_GATE_I		160
-#define MOB_GATE_II		170
-#define MOB_GATE_III		180
+#define MOB_MONSUM_I  130
+#define MOB_MONSUM_II  140
+#define MOB_MONSUM_III  150
+#define MOB_GATE_I  160
+#define MOB_GATE_II  170
+#define MOB_GATE_III  180
 
 /* Defined mobiles. */
-#define MOB_ELEMENTAL_BASE	20	/* Only one for now. */
-#define MOB_CLONE		10
-#define MOB_ZOMBIE		11
-#define MOB_AERIALSERVANT	19
+#define MOB_ELEMENTAL_BASE 20 /* Only one for now. */
+#define MOB_CLONE  10
+#define MOB_ZOMBIE  11
+#define MOB_AERIALSERVANT 19
 
 
 void mag_summons(int level, struct char_data *ch, struct obj_data *obj,
-		      int spellnum, int savetype)
+        int spellnum, int savetype)
 {
   struct char_data *mob = NULL;
   struct obj_data *tobj, *next_obj;
@@ -735,9 +735,9 @@ void mag_summons(int level, struct char_data *ch, struct obj_data *obj,
   switch (spellnum) {
   case SPELL_CLONE:
     msg = 10;
-    fmsg = rand_number(2, 6);	/* Random fail message. */
+    fmsg = rand_number(2, 6); /* Random fail message. */
     mob_num = MOB_CLONE;
-    pfail = 50;	/* 50% failure, should be based on something later. */
+    pfail = 50; /* 50% failure, should be based on something later. */
     break;
 
   case SPELL_ANIMATE_DEAD:
@@ -747,9 +747,9 @@ void mag_summons(int level, struct char_data *ch, struct obj_data *obj,
     }
     handle_corpse = TRUE;
     msg = 11;
-    fmsg = rand_number(2, 6);	/* Random fail message. */
+    fmsg = rand_number(2, 6); /* Random fail message. */
     mob_num = MOB_ZOMBIE;
-    pfail = 10;	/* 10% failure, should vary in the future. */
+    pfail = 10; /* 10% failure, should vary in the future. */
     break;
 
   default:
@@ -793,7 +793,7 @@ void mag_summons(int level, struct char_data *ch, struct obj_data *obj,
 
 
 void mag_points(int level, struct char_data *ch, struct char_data *victim,
-		     int spellnum, int savetype)
+       int spellnum, int savetype)
 {
   int healing = 0, move = 0;
 
@@ -821,7 +821,7 @@ void mag_points(int level, struct char_data *ch, struct char_data *victim,
 
 
 void mag_unaffects(int level, struct char_data *ch, struct char_data *victim,
-		        int spellnum, int type)
+          int spellnum, int type)
 {
   int spell = 0, msg_not_affected = TRUE;
   const char *to_vict = NULL, *to_room = NULL;
@@ -872,7 +872,7 @@ void mag_unaffects(int level, struct char_data *ch, struct char_data *victim,
 
 
 void mag_alter_objs(int level, struct char_data *ch, struct obj_data *obj,
-		         int spellnum, int savetype)
+           int spellnum, int savetype)
 {
   const char *to_char = NULL, *to_room = NULL;
 
@@ -882,17 +882,17 @@ void mag_alter_objs(int level, struct char_data *ch, struct obj_data *obj,
   switch (spellnum) {
     case SPELL_BLESS:
       if (!OBJ_FLAGGED(obj, ITEM_BLESS) &&
-	  (GET_OBJ_WEIGHT(obj) <= 5 * GET_LEVEL(ch))) {
-	SET_BIT(GET_OBJ_EXTRA(obj), ITEM_BLESS);
-	to_char = "$p glows briefly.";
+   (GET_OBJ_WEIGHT(obj) <= 5 * GET_LEVEL(ch))) {
+ SET_BIT(GET_OBJ_EXTRA(obj), ITEM_BLESS);
+ to_char = "$p glows briefly.";
       }
       break;
     case SPELL_CURSE:
       if (!OBJ_FLAGGED(obj, ITEM_NODROP)) {
-	SET_BIT(GET_OBJ_EXTRA(obj), ITEM_NODROP);
-	if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
-	  GET_OBJ_VAL(obj, 2)--;
-	to_char = "$p briefly glows red.";
+ SET_BIT(GET_OBJ_EXTRA(obj), ITEM_NODROP);
+ if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
+   GET_OBJ_VAL(obj, 2)--;
+ to_char = "$p briefly glows red.";
       }
       break;
     case SPELL_INVISIBLE:
@@ -962,7 +962,7 @@ void mag_creations(int level, struct char_data *ch, int spellnum)
   if (!(tobj = read_object(z, VIRTUAL))) {
     send_to_char(ch, "I seem to have goofed.\r\n");
     log("SYSERR: spell_creations, spell %d, obj %d: obj not found",
-	    spellnum, z);
+     spellnum, z);
     return;
   }
   obj_to_char(tobj, ch);

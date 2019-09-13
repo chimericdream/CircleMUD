@@ -1,5 +1,5 @@
 /* ************************************************************************
-*  file: purgeplay.c                                    Part of CircleMUD * 
+*  file: purgeplay.c                                    Part of CircleMUD *
 *  Usage: purge useless chars from playerfile                             *
 *  All Rights Reserved                                                    *
 *  Copyright (C) 1992, 1993 The Trustees of The Johns Hopkins University  *
@@ -50,8 +50,8 @@ void purge(char *filename)
 
     for (ptr = player.name; *ptr; ptr++)
       if (!isalpha(*ptr) || *ptr == ' ') {
-	okay = 0;
-	strcpy(reason, "Invalid name");
+ okay = 0;
+ strcpy(reason, "Invalid name");
       }
     if (player.level == 0) {
       okay = 0;
@@ -69,22 +69,22 @@ void purge(char *filename)
     if (okay && player.level <= LVL_IMMORT) {
 
       if (!(player.char_specials_saved.act & PLR_CRYO)) {
-	if (player.level == 1)		timeout = 4;	/* Lev   1 : 4 days */
-	else if (player.level <= 4)	timeout = 7;	/* Lev 2-4 : 7 days */
-	else if (player.level <= 10)	timeout = 30;	/* Lev 5-10: 30 days */
-	else if (player.level <= LVL_IMMORT - 1)
-	  timeout = 60;		/* Lev 11-30: 60 days */
-	else if (player.level <= LVL_IMMORT)
-	  timeout = 90;		/* Lev 31: 90 days */
+ if (player.level == 1)  timeout = 4; /* Lev   1 : 4 days */
+ else if (player.level <= 4) timeout = 7; /* Lev 2-4 : 7 days */
+ else if (player.level <= 10) timeout = 30; /* Lev 5-10: 30 days */
+ else if (player.level <= LVL_IMMORT - 1)
+   timeout = 60;  /* Lev 11-30: 60 days */
+ else if (player.level <= LVL_IMMORT)
+   timeout = 90;  /* Lev 31: 90 days */
       } else
-	timeout = 90;
+ timeout = 90;
 
       timeout *= SECS_PER_REAL_DAY;
 
       if ((time(0) - player.last_logon) > timeout) {
-	okay = 0;
-	sprintf(reason, "Level %2d idle for %3ld days", player.level,
-		((time(0) - player.last_logon) / SECS_PER_REAL_DAY));
+ okay = 0;
+ sprintf(reason, "Level %2d idle for %3ld days", player.level,
+  ((time(0) - player.last_logon) / SECS_PER_REAL_DAY));
       }
     }
     if (player.char_specials_saved.act & PLR_DELETED) {
