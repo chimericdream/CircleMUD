@@ -8,7 +8,6 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-
 /* external declarations and prototypes **********************************/
 
 extern struct weather_data weather_info;
@@ -20,20 +19,35 @@ extern FILE *logfile;
 
 /* public functions in utils.c */
 void basic_mud_log(const char *format, ...) __attribute__ ((format (printf, 1, 2)));
+
 void basic_mud_vlog(const char *format, va_list args);
+
 int touch(const char *path);
+
 void mudlog(int type, int level, int file, const char *str, ...) __attribute__ ((format (printf, 4, 5)));
+
 void log_death_trap(struct char_data *ch);
+
 int rand_number(int from, int to);
+
 int dice(int number, int size);
+
 size_t sprintbit(bitvector_t vektor, const char *names[], char *result, size_t reslen);
+
 size_t sprinttype(int type, const char *names[], char *result, size_t reslen);
+
 int get_line(FILE *fl, char *buf);
+
 int get_filename(char *filename, size_t fbufsize, int mode, const char *orig_name);
+
 time_t mud_time_to_secs(struct time_info_data *now);
+
 struct time_info_data *age(struct char_data *ch);
+
 int num_pc_in_room(struct room_data *room);
+
 void core_dump_real(const char *, int);
+
 int room_is_dark(room_rnum room);
 
 #define core_dump()  core_dump_real(__FILE__, __LINE__)
@@ -43,14 +57,19 @@ int room_is_dark(room_rnum room);
  * will be defined by sysdep.h if a strcasecmp or stricmp exists.
  */
 #ifndef str_cmp
+
 int str_cmp(const char *arg1, const char *arg2);
+
 #endif
 #ifndef strn_cmp
+
 int strn_cmp(const char *arg1, const char *arg2, int n);
+
 #endif
 
 /* random functions in random.c */
 void circle_srandom(unsigned long initial_seed);
+
 unsigned long circle_random(void);
 
 /* undefine MAX and MIN so that our functions are used instead */
@@ -63,14 +82,20 @@ unsigned long circle_random(void);
 #endif
 
 int MAX(int a, int b);
+
 int MIN(int a, int b);
+
 char *CAP(char *txt);
 
 /* Followers */
 int num_followers_charmed(struct char_data *ch);
+
 void die_follower(struct char_data *ch);
+
 void add_follower(struct char_data *ch, struct char_data *leader);
+
 void stop_follower(struct char_data *ch);
+
 bool circle_follow(struct char_data *ch, struct char_data *victim);
 
 /* in act.informative.c */
@@ -78,21 +103,31 @@ void look_at_room(struct char_data *ch, int mode);
 
 /* in act.movmement.c */
 int do_simple_move(struct char_data *ch, int dir, int following);
+
 int perform_move(struct char_data *ch, int dir, int following);
 
 /* in limits.c */
 int mana_gain(struct char_data *ch);
-int hit_gain(struct char_data *ch);
-int move_gain(struct char_data *ch);
-void advance_level(struct char_data *ch);
-void set_title(struct char_data *ch, char *title);
-void gain_exp(struct char_data *ch, int gain);
-void gain_exp_regardless(struct char_data *ch, int gain);
-void gain_condition(struct char_data *ch, int condition, int value);
-void check_idling(struct char_data *ch);
-void point_update(void);
-void update_pos(struct char_data *victim);
 
+int hit_gain(struct char_data *ch);
+
+int move_gain(struct char_data *ch);
+
+void advance_level(struct char_data *ch);
+
+void set_title(struct char_data *ch, char *title);
+
+void gain_exp(struct char_data *ch, int gain);
+
+void gain_exp_regardless(struct char_data *ch, int gain);
+
+void gain_condition(struct char_data *ch, int condition, int value);
+
+void check_idling(struct char_data *ch);
+
+void point_update(void);
+
+void update_pos(struct char_data *victim);
 
 /* various constants *****************************************************/
 
@@ -128,9 +163,7 @@ void update_pos(struct char_data *victim);
 #define SECS_PER_REAL_DAY (24*SECS_PER_REAL_HOUR)
 #define SECS_PER_REAL_YEAR (365*SECS_PER_REAL_DAY)
 
-
 /* string utils **********************************************************/
-
 
 #define YESNO(a) ((a) ? "YES" : "NO")
 #define ONOFF(a) ((a) ? "ON" : "OFF")
@@ -143,9 +176,7 @@ void update_pos(struct char_data *victim);
 /* See also: ANA, SANA */
 #define AN(string) (strchr("aeiouAEIOU", *string) ? "an" : "a")
 
-
 /* memory utils **********************************************************/
-
 
 #define CREATE(result, type, number)  do {\
  if ((number) * sizeof(type) <= 0) \
@@ -153,7 +184,7 @@ void update_pos(struct char_data *victim);
  if (!((result) = (type *) calloc ((number), sizeof(type)))) \
   { perror("SYSERR: malloc failure"); abort(); } } while(0)
 
-#define RECREATE(result,type,number) do {\
+#define RECREATE(result, type, number) do {\
   if (!((result) = (type *) realloc ((result), sizeof(type) * (number))))\
   { perror("SYSERR: realloc failure"); abort(); } } while(0)
 
@@ -177,14 +208,12 @@ void update_pos(struct char_data *victim);
          temp->next = (item)->next; \
    }     \
 
-
 /* basic bitvector utils *************************************************/
 
-
-#define IS_SET(flag,bit)  ((flag) & (bit))
-#define SET_BIT(var,bit)  ((var) |= (bit))
-#define REMOVE_BIT(var,bit)  ((var) &= ~(bit))
-#define TOGGLE_BIT(var,bit) ((var) ^= (bit))
+#define IS_SET(flag, bit)  ((flag) & (bit))
+#define SET_BIT(var, bit)  ((var) |= (bit))
+#define REMOVE_BIT(var, bit)  ((var) &= ~(bit))
+#define TOGGLE_BIT(var, bit) ((var) ^= (bit))
 
 /*
  * Accessing player specific data structures on a mobile is a very bad thing
@@ -231,12 +260,10 @@ void update_pos(struct char_data *victim);
 /* IS_AFFECTED for backwards compatibility */
 #define IS_AFFECTED(ch, skill) (AFF_FLAGGED((ch), (skill)))
 
-#define PLR_TOG_CHK(ch,flag) ((TOGGLE_BIT(PLR_FLAGS(ch), (flag))) & (flag))
-#define PRF_TOG_CHK(ch,flag) ((TOGGLE_BIT(PRF_FLAGS(ch), (flag))) & (flag))
-
+#define PLR_TOG_CHK(ch, flag) ((TOGGLE_BIT(PLR_FLAGS(ch), (flag))) & (flag))
+#define PRF_TOG_CHK(ch, flag) ((TOGGLE_BIT(PRF_FLAGS(ch), (flag))) & (flag))
 
 /* room utils ************************************************************/
-
 
 #define SECT(room) (VALID_ROOM_RNUM(room) ? \
     world[(room)].sector_type : SECT_INSIDE)
@@ -250,9 +277,7 @@ void update_pos(struct char_data *victim);
 #define GET_ROOM_SPEC(room) \
  (VALID_ROOM_RNUM(room) ? world[(room)].func : NULL)
 
-
 /* char utils ************************************************************/
-
 
 #define IN_ROOM(ch) ((ch)->in_room)
 #define GET_WAS_IN(ch) ((ch)->was_in_room)
@@ -356,7 +381,6 @@ void update_pos(struct char_data *victim);
 #define IS_EVIL(ch)    (GET_ALIGNMENT(ch) <= -350)
 #define IS_NEUTRAL(ch) (!IS_GOOD(ch) && !IS_EVIL(ch))
 
-
 /* These three deprecated. */
 #define WAIT_STATE(ch, cycle) do { GET_WAIT_STATE(ch) = (cycle); } while(0)
 #define CHECK_WAIT(ch)                ((ch)->wait > 0)
@@ -364,12 +388,10 @@ void update_pos(struct char_data *victim);
 /* New, preferred macro. */
 #define GET_WAIT_STATE(ch)    ((ch)->wait)
 
-
 /* descriptor-based utils ************************************************/
 
 /* Hrm, not many.  We should make more. -gg 3/4/99 */
 #define STATE(d) ((d)->connected)
-
 
 /* object utils **********************************************************/
 
@@ -401,7 +423,6 @@ void update_pos(struct char_data *victim);
 
 #define CAN_WEAR(obj, part) OBJWEAR_FLAGGED((obj), (part))
 
-
 /* compound utilities and other macros **********************************/
 
 /*
@@ -417,7 +438,6 @@ void update_pos(struct char_data *victim);
 
 #define ANA(obj) (strchr("aeiouAEIOU", *(obj)->name) ? "An" : "A")
 #define SANA(obj) (strchr("aeiouAEIOU", *(obj)->name) ? "an" : "a")
-
 
 /* Various macros building up to CAN_SEE */
 
@@ -442,7 +462,6 @@ void update_pos(struct char_data *victim);
 
 /* End of CAN_SEE */
 
-
 #define INVIS_OK_OBJ(sub, obj) \
   (!OBJ_FLAGGED((obj), ITEM_INVISIBLE) || AFF_FLAGGED((sub), AFF_DETECT_INVIS))
 
@@ -457,7 +476,7 @@ void update_pos(struct char_data *victim);
 #define CAN_SEE_OBJ(sub, obj) \
    (MORT_CAN_SEE_OBJ(sub, obj) || (!IS_NPC(sub) && PRF_FLAGGED((sub), PRF_HOLYLIGHT)))
 
-#define CAN_CARRY_OBJ(ch,obj)  \
+#define CAN_CARRY_OBJ(ch, obj)  \
    (((IS_CARRYING_W(ch) + GET_OBJ_WEIGHT(obj)) <= CAN_CARRY_W(ch)) &&   \
     ((IS_CARRYING_N(ch) + 1) <= CAN_CARRY_N(ch)))
 
@@ -473,13 +492,11 @@ void update_pos(struct char_data *victim);
 #define OBJN(obj, vict) (CAN_SEE_OBJ((vict), (obj)) ? \
  fname((obj)->name) : "something")
 
-
 #define EXIT(ch, door)  (world[IN_ROOM(ch)].dir_option[door])
 
 #define CAN_GO(ch, door) (EXIT(ch,door) && \
     (EXIT(ch,door)->to_room != NOWHERE) && \
     !IS_SET(EXIT(ch, door)->exit_info, EX_CLOSED))
-
 
 #define CLASS_ABBR(ch) (IS_NPC(ch) ? "--" : class_abbrevs[(int)GET_CLASS(ch)])
 
@@ -494,9 +511,7 @@ void update_pos(struct char_data *victim);
 
 #define OUTSIDE(ch) (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_INDOORS))
 
-
 /* OS compatibility ******************************************************/
-
 
 /* there could be some strange OS which doesn't have NULL... */
 #ifndef NULL
@@ -525,8 +540,7 @@ void update_pos(struct char_data *victim);
  * capable of encrypting.
  */
 #if defined(NOCRYPT) || !defined(CIRCLE_CRYPT)
-#define CRYPT(a,b) (a)
+#define CRYPT(a, b) (a)
 #else
 #define CRYPT(a,b) ((char *) crypt((a),(b)))
 #endif
-
